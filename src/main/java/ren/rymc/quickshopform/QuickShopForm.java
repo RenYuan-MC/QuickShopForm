@@ -20,6 +20,7 @@ import org.geysermc.cumulus.util.FormImage;
 import org.geysermc.floodgate.api.FloodgateApi;
 import org.maxgamer.quickshop.api.event.ShopClickEvent;
 import org.maxgamer.quickshop.api.shop.Shop;
+import ren.rymc.quickshopform.metrics.Metrics;
 import ren.rymc.quickshopform.utils.Utils;
 
 import java.util.UUID;
@@ -177,6 +178,7 @@ public final class QuickShopForm extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         Bukkit.getPluginManager().registerEvents(this, this);
+        new Metrics(this, 16801);
     }
 
 }
