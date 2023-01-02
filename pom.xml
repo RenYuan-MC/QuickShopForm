@@ -85,8 +85,8 @@
             <groupId>com.ghostchu</groupId>
             <artifactId>quickshop-bukkit</artifactId>
             <version>3.6.0.3</version>
-            <scope>provided</scope>
-            <classifier>shaded</classifier>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/QuickShop-Hikari-3.6.0.3.jar</systemPath>
         </dependency>
     </dependencies>
 </project>
