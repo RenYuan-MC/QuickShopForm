@@ -94,7 +94,7 @@ public final class QuickShopForm extends JavaPlugin implements Listener {
                             if (response.isCorrect()) {
                                 int id = response.getClickedButtonId();
                                 if (id == 0) Utils.changeShopType(player, shop);
-                                else if (id == 1) BEQuickShopPriceSet(player, shop);
+                                else if (id == 1) sendQuickShopPriceSetForm(player, shop);
                                 else if (id == 2) sendQuickShopConfirmForm(player, shop);
                             }
                         })
@@ -141,7 +141,7 @@ public final class QuickShopForm extends JavaPlugin implements Listener {
 
     }
 
-    private void BEQuickShopPriceSet(Player player, Shop shop) {
+    private void sendQuickShopPriceSetForm(Player player, Shop shop) {
         if (shop == null) return;
         UUID uuid = player.getUniqueId();
         if (!FloodgateApi.getInstance().isFloodgatePlayer(uuid)) return;
