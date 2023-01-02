@@ -1,6 +1,12 @@
 name: QuickShopForm-Hikari 自动构建
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - hikari
+  pull_request:
+    branches:
+      - hikari
 
 jobs:
   build:
@@ -25,8 +31,8 @@ jobs:
       uses: actions/upload-artifact@v3
       if: success()
       with:
-        name: QuickShopForm
-        path: target/QuickShopForm.jar
+        name: QuickShopForm-Hikari
+        path: target/QuickShopForm-Hikari.jar
     - name: Automatic Releases
       uses: marvinpinto/action-automatic-releases@v1.2.1
       if: success()
@@ -34,7 +40,7 @@ jobs:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         automatic_release_tag: "hikari-dev"
         prerelease: false
-        title: "QuickShopForm 自动构建版本"
+        title: "QuickShopForm-Hikari 自动构建版本"
         files: |
           target/QuickShopForm-Hikari.jar
         

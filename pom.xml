@@ -17,7 +17,7 @@
     </properties>
 
     <build>
-        <finalName>QuickShopForm</finalName>
+        <finalName>QuickShopForm-Hikari</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
