@@ -6,13 +6,13 @@
 
     <groupId>ren.rymc</groupId>
     <artifactId>QuickShopForm</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0-Hikari</version>
     <packaging>jar</packaging>
 
     <name>QuickShopForm</name>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -62,6 +62,10 @@
             <id>opencollab-snapshot</id>
             <url>https://repo.opencollab.dev/maven-snapshots/</url>
         </repository>
+        <repository>
+            <id>codemc</id>
+            <url>https://repo.codemc.io/repository/maven-public/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -72,17 +76,17 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.maxgamer</groupId>
-            <artifactId>QuickShop</artifactId>
-            <version>5.1.0.6</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/libs/QuickShop-5.1.0.6.jar</systemPath>
-        </dependency>
-        <dependency>
             <groupId>org.geysermc.floodgate</groupId>
             <artifactId>api</artifactId>
             <version>2.0-SNAPSHOT</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ghostchu</groupId>
+            <artifactId>quickshop-bukkit</artifactId>
+            <version>3.6.0.3</version>
+            <scope>provided</scope>
+            <classifier>shaded</classifier>
         </dependency>
     </dependencies>
 </project>

@@ -1,4 +1,4 @@
-name: QuickShopForm 自动构建
+name: QuickShopForm-Hikari 自动构建
 
 on: [push, pull_request]
 
@@ -32,9 +32,9 @@ jobs:
       if: success()
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "dev"
+        automatic_release_tag: "hikari-dev"
         prerelease: false
         title: "QuickShopForm 自动构建版本"
         files: |
-          target/QuickShopForm.jar
+          target/QuickShopForm-Hikari.jar
         
