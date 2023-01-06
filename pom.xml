@@ -6,7 +6,7 @@
 
     <groupId>ren.rymc</groupId>
     <artifactId>QuickShopForm</artifactId>
-    <version>1.2.0-Hikari</version>
+    <version>1.2.1-Hikari</version>
     <packaging>jar</packaging>
 
     <name>QuickShopForm</name>

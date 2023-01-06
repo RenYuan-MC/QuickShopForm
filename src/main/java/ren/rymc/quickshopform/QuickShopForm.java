@@ -147,7 +147,7 @@ public final class QuickShopForm extends JavaPlugin implements Listener {
         if (!FloodgateApi.getInstance().isFloodgatePlayer(uuid)) return;
         FloodgateApi.getInstance().getPlayer(uuid).sendForm(
                 CustomForm.builder()
-                        .title("§8领地创建")
+                        .title("§8商店价格修改")
                         .input("请输入你要修改的商店价格", "§7数字,可以是小数")
                         .responseHandler((f, r) -> {
                             CustomFormResponse response = f.parseResponse(r);
