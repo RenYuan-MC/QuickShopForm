@@ -1,4 +1,4 @@
-name: QuickShopForm-Hikari 自动构建
+name: QuickShopForm 自动构建
 
 on:
   push:
