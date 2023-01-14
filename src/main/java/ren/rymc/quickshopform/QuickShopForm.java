@@ -55,15 +55,7 @@ public final class QuickShopForm extends JavaPlugin implements Listener {
         }
         shopClickStatus = false;
         if (!FloodgateApi.getInstance().isFloodgatePlayer(uuid)) return;
-        if (action.equals(Action.LEFT_CLICK_BLOCK)) {
-            if (player.isSneaking()) {
-                shop.openPreview(player);
-                return;
-            }
-            if (Utils.isQuickShopEmpty(shop)) return;
-            sendQuickShopMainForm(player, shop.getPrice());
-
-        }
+        if (action.equals(Action.LEFT_CLICK_BLOCK) || Utils.isQuickShopEmpty(shop)) sendQuickShopMainForm(player, shop.getPrice());
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
