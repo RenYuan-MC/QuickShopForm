@@ -18,7 +18,7 @@ import org.geysermc.cumulus.response.CustomFormResponse;
 import org.geysermc.cumulus.response.SimpleFormResponse;
 import org.geysermc.cumulus.util.FormImage;
 import org.geysermc.floodgate.api.FloodgateApi;
-import org.maxgamer.quickshop.api.event.ShopClickEvent;
+import org.maxgamer.quickshop.api.event.PlayerShopClickEvent;
 import org.maxgamer.quickshop.api.shop.Shop;
 import ren.rymc.quickshopform.metrics.Metrics;
 import ren.rymc.quickshopform.utils.Utils;
@@ -27,61 +27,58 @@ import java.util.UUID;
 
 public final class QuickShopForm extends JavaPlugin implements Listener {
 
-    private Boolean shopClickStatus = false;
-
     @EventHandler(priority = EventPriority.HIGHEST)
     public void PlayerInteractEvent(PlayerInteractEvent event) {
+
         Player player = event.getPlayer();
-        UUID uuid = player.getUniqueId();
+        if (!FloodgateApi.getInstance().isFloodgatePlayer(player.getUniqueId())) return;
+
         Block block = event.getClickedBlock();
         if (block == null) return;
         Shop shop = Utils.getQuickShop(block);
         if (shop == null) return;
-        Action action = event.getAction();
-        if (action.equals(Action.LEFT_CLICK_BLOCK) && player.isSneaking()) {
-            shop.openPreview(player);
-            return;
-        }
-        if (!shopClickStatus) {
-            if (!FloodgateApi.getInstance().isFloodgatePlayer(uuid)) return;
-            if (action.equals(Action.RIGHT_CLICK_BLOCK)) {
-                if (block.getType().equals(Material.CHEST) || block.getType().equals(Material.TRAPPED_CHEST)) return;
-                if (player.isOp() || shop.getOwner().equals(player.getUniqueId())) {
-                    sendQuickShopSettingForm(player, shop);
-                }
 
-            }
+        Action action = event.getAction();
+
+        if (action.equals(Action.LEFT_CLICK_BLOCK)) {
+            if (player.isSneaking()) shop.openPreview(player);
             return;
         }
-        shopClickStatus = false;
-        if (!FloodgateApi.getInstance().isFloodgatePlayer(uuid)) return;
-        if (action.equals(Action.LEFT_CLICK_BLOCK) || Utils.isQuickShopEmpty(shop)) sendQuickShopMainForm(player, shop.getPrice());
+
+        if (!action.equals(Action.RIGHT_CLICK_BLOCK)) return;
+
+        if (block.getType().equals(Material.CHEST) || block.getType().equals(Material.TRAPPED_CHEST)) return;
+        if (player.isOp() || shop.getOwner().equals(player.getUniqueId())) {
+            sendQuickShopSettingForm(player, shop);
+        }
+
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void PlayerAnimationEvent(PlayerAnimationEvent event) {
+
         Player player = event.getPlayer();
+        if (!FloodgateApi.getInstance().isFloodgatePlayer(player.getUniqueId())) return;
+
         if (!player.getGameMode().equals(GameMode.ADVENTURE)) return;
-        UUID uuid = player.getUniqueId();
-        if (!FloodgateApi.getInstance().isFloodgatePlayer(uuid)) return;
+
         Block block = player.getTargetBlock(null, 5);
         Shop shop = Utils.getQuickShop(block);
         if (shop == null) return;
-        if (!shopClickStatus) {
-            if (player.isSneaking() && (!block.getType().equals(Material.CHEST) || !block.getType().equals(Material.TRAPPED_CHEST))) {
-                shop.openPreview(player);
-            }
-            return;
-        }
-        shopClickStatus = false;
-        sendQuickShopMainForm(player, shop.getPrice());
+
+        if (!player.isSneaking()) return;
+        if (block.getType().equals(Material.CHEST) || block.getType().equals(Material.TRAPPED_CHEST)) return;
+        shop.openPreview(player);
 
     }
 
-    @EventHandler
-    public void ShopClickEvent(ShopClickEvent event) {
-        shopClickStatus = true;
+    @EventHandler(ignoreCancelled = true)
+    public void ShopClickEvent(PlayerShopClickEvent event) {
+        Shop shop = event.getShop();
+        if (Utils.isQuickShopEmpty(shop)) return;
+        sendQuickShopMainForm(event.getPlayer(), shop.getPrice());
     }
+
 
     private void sendQuickShopSettingForm(Player player, Shop shop) {
         UUID uuid = player.getUniqueId();
