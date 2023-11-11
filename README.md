@@ -8,5 +8,5 @@
 * 删除商店
 * 商店物品预览
 ## 前置
-* Floodgate (2.0版本以上) - 用于基岩版菜单
-* QuickShop (5.0版本以上) - 快捷商店插件
+* Floodgate (2.2版本以上) - 用于基岩版菜单
+* QuickShop 或 QuickShop-Hikari (5.1版本以上) - 快捷商店插件

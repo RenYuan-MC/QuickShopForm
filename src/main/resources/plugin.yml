@@ -1,8 +1,9 @@
 name: QuickShopForm
 version: '${project.version}'
-main: ren.rymc.quickshopform.QuickShopForm
+main: ltd.rymc.form.quickshop.QuickShopForm
 api-version: 1.13
-depend: [ floodgate, QuickShop ]
+depend: [ floodgate ]
+softdepend: [ QuickShop, QuickShop-Hikari ]
 authors: [ RENaa_FD ]
 description: 快捷商店Form菜单支持
-website: https://rymc.ren/
+website: https://rymc.ltd/
