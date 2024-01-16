@@ -14,7 +14,7 @@ import org.maxgamer.quickshop.api.shop.ShopManager;
 public class ShopHandlerNormal implements ShopHandler {
     private static final ShopManager manager = org.maxgamer.quickshop.QuickShop.getInstance().getShopManager();
     public QuickShop getQuickShop(Block block) {
-        return new QuickShopNormal(getQuickShop0(block));
+        return QuickShopNormal.of(getQuickShop0(block));
     }
 
     private static Shop getQuickShop0(Block block){

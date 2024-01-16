@@ -15,6 +15,10 @@ public class QuickShopNormal implements QuickShop {
         this.shop = shop;
     }
 
+    public static QuickShopNormal of(Shop shop){
+        return shop == null ? null : new QuickShopNormal(shop);
+    }
+
     public UUID getOwner(){
         return shop.getOwner();
     }

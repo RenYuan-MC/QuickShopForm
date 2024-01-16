@@ -28,7 +28,7 @@ public class ShopHandlerHikari implements ShopHandler {
     }
 
     public QuickShop getQuickShop(Block block) {
-        return new QuickShopHikari(getQuickShop0(block));
+        return QuickShopHikari.of(getQuickShop0(block));
     }
 
     private static Shop getQuickShop0(Block block) {

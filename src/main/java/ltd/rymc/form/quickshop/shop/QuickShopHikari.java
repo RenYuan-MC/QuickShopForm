@@ -27,6 +27,10 @@ public class QuickShopHikari implements QuickShop {
         this.shop = shop;
     }
 
+    public static QuickShopHikari of(Shop shop){
+        return shop == null ? null : new QuickShopHikari(shop);
+    }
+
     public UUID getOwner() {
         return shop.getOwner().getUniqueId();
     }
