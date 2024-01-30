@@ -1,27 +1,18 @@
 package ltd.rymc.form.quickshop.shop;
 
-import com.ghostchu.quickshop.api.QuickShopAPI;
 import com.ghostchu.quickshop.api.shop.Shop;
 import com.ghostchu.quickshop.api.shop.ShopManager;
 import com.ghostchu.quickshop.api.shop.ShopType;
-import org.bukkit.Bukkit;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.Plugin;
 
 import java.util.UUID;
 
 public class QuickShopHikari implements QuickShop {
-    private static ShopManager manager = null;
+    private static final ShopManager manager = com.ghostchu.quickshop.QuickShop.getInstance().getShopManager();
 
-    static {
-        Plugin plugin = Bukkit.getPluginManager().getPlugin("QuickShop-Hikari");
-        if (plugin != null && plugin.isEnabled()) {
-            manager = ((QuickShopAPI) plugin).getShopManager();
-        }
-    }
     private final Shop shop;
     public QuickShopHikari(Shop shop){
         this.shop = shop;

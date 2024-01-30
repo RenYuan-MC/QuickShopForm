@@ -5,12 +5,12 @@ import ltd.rymc.form.quickshop.handler.ShopHandler;
 import ltd.rymc.form.quickshop.handler.ShopHandlerHikari;
 import ltd.rymc.form.quickshop.handler.ShopHandlerNormal;
 import ltd.rymc.form.quickshop.listener.ShopListener;
+import ltd.rymc.form.quickshop.metrics.Metrics;
 import ltd.rymc.form.quickshop.shop.QuickShop;
 import ltd.rymc.form.quickshop.utils.PluginUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.maxgamer.quickshop.Metrics;
 
 public final class QuickShopForm extends JavaPlugin {
 
