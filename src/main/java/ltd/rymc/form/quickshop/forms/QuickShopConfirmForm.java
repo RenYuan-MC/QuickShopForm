@@ -20,7 +20,7 @@ public class QuickShopConfirmForm extends RSimpleForm {
 
     @Override
     public void onValidResult(SimpleForm form, SimpleFormResponse response) {
-        if (!bukkitPlayer.isOp() || !shop.getOwner().equals(bukkitPlayer.getUniqueId())){
+        if (!(bukkitPlayer.isOp() || shop.getOwner().equals(bukkitPlayer.getUniqueId()))){
             return;
         }
 
