@@ -40,7 +40,7 @@ public class ShopListener implements Listener {
 
         if (block.getType().equals(Material.CHEST) || block.getType().equals(Material.TRAPPED_CHEST)) return;
         if (player.isOp() || shop.getOwner().equals(player.getUniqueId())) {
-            new QuickShopSettingForm(player, null, shop);
+            new QuickShopSettingForm(player, null, shop).send();
         }
 
     }
@@ -67,6 +67,6 @@ public class ShopListener implements Listener {
     public void ShopClickEvent(ShopClickEvent event) {
         QuickShop shop = event.getShop();
         if (shop.isEmpty()) return;
-        new QuickShopMainForm(event.getPlayer(), null, shop);
+        new QuickShopMainForm(event.getPlayer(), null, shop).send();
     }
 }
