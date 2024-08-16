@@ -3,7 +3,7 @@ package ltd.rymc.form.quickshop.shop;
 import com.ghostchu.quickshop.api.shop.Shop;
 import com.ghostchu.quickshop.api.shop.ShopManager;
 import com.ghostchu.quickshop.api.shop.ShopType;
-import org.bukkit.block.Chest;
+import org.bukkit.block.Container;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -32,7 +32,7 @@ public class QuickShopHikari implements QuickShop {
 
     public boolean isEmpty() {
         if (shop.isUnlimited()) return false;
-        Inventory shopInventory = ((Chest) shop.getLocation().getBlock().getState()).getBlockInventory();
+        Inventory shopInventory = ((Container) shop.getLocation().getBlock().getState()).getSnapshotInventory();
         for (ItemStack item : shopInventory.getContents()) {
             if (item != null &&
                 item.getType() == shop.getItem().getType() &&

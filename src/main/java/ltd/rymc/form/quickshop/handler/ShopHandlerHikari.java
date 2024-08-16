@@ -1,7 +1,7 @@
 package ltd.rymc.form.quickshop.handler;
 
 import com.ghostchu.quickshop.api.QuickShopAPI;
-import com.ghostchu.quickshop.api.event.ShopClickEvent;
+import com.ghostchu.quickshop.api.event.ShopInfoPanelEvent;
 import com.ghostchu.quickshop.api.shop.Shop;
 import com.ghostchu.quickshop.api.shop.ShopManager;
 import ltd.rymc.form.quickshop.QuickShopForm;
@@ -33,9 +33,9 @@ public class ShopHandlerHikari implements ShopHandler {
 
     @SuppressWarnings("deprecation")
     @EventHandler(ignoreCancelled = true)
-    public void ShopClickEvent(ShopClickEvent event) {
+    public void ShopClickEvent(ShopInfoPanelEvent event) {
         QuickShop shop = new QuickShopHikari(event.getShop());
-        boolean cancelled = QuickShopForm.callShopClickEvent(shop, event.getClicker());
+        boolean cancelled = QuickShopForm.callShopClickEvent(shop, event.getPlayer());
         event.setCancelled(cancelled);
     }
 
