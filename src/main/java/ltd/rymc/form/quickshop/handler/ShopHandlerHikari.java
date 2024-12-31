@@ -1,7 +1,7 @@
 package ltd.rymc.form.quickshop.handler;
 
 import com.ghostchu.quickshop.api.QuickShopAPI;
-import com.ghostchu.quickshop.api.event.ShopInfoPanelEvent;
+import com.ghostchu.quickshop.api.event.general.ShopInfoPanelEvent;
 import com.ghostchu.quickshop.api.shop.Shop;
 import com.ghostchu.quickshop.api.shop.ShopManager;
 import ltd.rymc.form.quickshop.QuickShopForm;
