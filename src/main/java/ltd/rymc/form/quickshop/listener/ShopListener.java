@@ -38,7 +38,7 @@ public class ShopListener implements Listener {
 
         if (!action.equals(Action.RIGHT_CLICK_BLOCK)) return;
 
-        if (block.getType().equals(Material.CHEST) || block.getType().equals(Material.TRAPPED_CHEST)) return;
+        if (block.getType().equals(Material.CHEST) || block.getType().equals(Material.TRAPPED_CHEST) || block.getType().equals(Material.BARREL)) return;
         if (player.isOp() || shop.getOwner().equals(player.getUniqueId())) {
             new QuickShopSettingForm(player, null, shop).send();
         }
