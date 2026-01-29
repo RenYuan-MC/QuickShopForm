@@ -2,11 +2,10 @@ package ltd.rymc.form.quickshop.shop;
 
 import com.ghostchu.quickshop.api.shop.Shop;
 import com.ghostchu.quickshop.api.shop.ShopManager;
-import com.ghostchu.quickshop.api.shop.ShopType;
-import org.bukkit.block.Container;
+import com.ghostchu.quickshop.api.shop.IShopType;
+
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
+
 
 import java.util.UUID;
 
@@ -32,14 +31,20 @@ public class QuickShopHikari implements QuickShop {
 
     public boolean isEmpty() {
         if (shop.isUnlimited()) return false;
-        Inventory shopInventory = ((Container) shop.getLocation().getBlock().getState()).getSnapshotInventory();
-        for (ItemStack item : shopInventory.getContents()) {
-            if (item != null &&
-                item.getType() == shop.getItem().getType() &&
-                String.valueOf(item.getItemMeta()).equals(String.valueOf(shop.getItem().getItemMeta()))
-            ) return false;
+        // 修复：使用Shop的库存方法而不是直接访问容器
+        try {
+            if (shop.isBuying()) {
+                // 对于购买型商店，检查剩余空间
+                return shop.getRemainingSpace() <= 0;
+            } else {
+                // 对于销售型商店，检查剩余库存
+                return shop.getRemainingStock() <= 0;
+            }
+        } catch (Exception e) {
+            // 如果出现异常，记录错误并返回true作为安全默认值
+            e.printStackTrace();
+            return true;
         }
-        return true;
     }
 
     public double getPrice(){
@@ -56,6 +61,12 @@ public class QuickShopHikari implements QuickShop {
 
     public void changeType(Player player) {
         if (!(player.isOp() || getOwner().equals(player.getUniqueId()))) return;
-        shop.setShopType(shop.isBuying() ? ShopType.SELLING : ShopType.BUYING);
+        // 使用正确的API方式设置商店类型，处理类型转换
+        IShopType currentType = shop.shopType();
+        if (currentType.isBuying()) {
+            shop.shopType("SELLING");
+        } else {
+            shop.shopType("BUYING");
+        }
     }
 }
